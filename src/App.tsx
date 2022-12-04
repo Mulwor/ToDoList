@@ -5,7 +5,9 @@ import TodoList from "./components/TodoList";
 function App() {
     return (
         <>
-            <TodoList />
+            <TodoList title = "What to learn"/>
+            <TodoList title = "Who are you"/>
+            <TodoList title = "Do you stupid"/>
         </>
     );
 }
