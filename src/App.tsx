@@ -8,7 +8,8 @@ function App() {
         { id: 2, title: "JS", isDone: true },
         { id: 3, title: "ReactJS", isDone: false },
         { id: 4, title: "SolidJS", isDone: true },
-        { id: 5, title: "WesternJS", isDone: false }
+        { id: 5, title: "WesternJS", isDone: false },
+        { id: 6, title: "Zeva", isDone: true}
     ]
     const tasks2 = [
         { id: 1, title: "Hello world", isDone: true },

@@ -23,11 +23,13 @@ function TodoList(props: PropsType) {
                 </div>
 
                 <ul>
-                    <li><input type="checkbox" checked={props.tasks[0].isDone}/> <span> {props.tasks[0].title} Language </span></li>
-                    <li><input type="checkbox" checked={props.tasks[1].isDone}/> <span>{props.tasks[1].title} </span></li>
-                    <li><input type="checkbox" checked={props.tasks[2].isDone}/> <span> {props.tasks[2].title}</span></li>
-                    <li><input type="checkbox" checked={props.tasks[3].isDone}/> <span> {props.tasks[3].title} </span></li>
-                    <li><input type="checkbox" checked={props.tasks[4].isDone}/> <span> {props.tasks[4].title} </span></li>
+                    {props.tasks.map((task: TaskType) => {
+                        return (
+                            <li key = {task.id}>
+                                <input type='checkbox' checked={task.isDone}/><span>{task.title}</span>
+                            </li>
+                        )
+                    })}
                 </ul>
 
                 <div>
