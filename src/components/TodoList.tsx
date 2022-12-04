@@ -1,8 +1,16 @@
 import React from "react";
 
+type TaskType = {
+    id: number
+    title: string
+    isDone: boolean
+}
+
 type PropsType = {
     title: string
+    tasks: Array<TaskType>
 }
+
 
 function TodoList(props: PropsType) {
     return (
@@ -15,12 +23,11 @@ function TodoList(props: PropsType) {
                 </div>
 
                 <ul>
-                    <li><input type="checkbox" checked={true}/> <span> HyperText Markup Language </span></li>
-                    <li><input type="checkbox" checked={true}/> <span> Cascading Style Sheets </span></li>
-                    <li><input type="checkbox" checked={true}/> <span> JavaScript </span></li>
-                    <li><input type="checkbox" checked={true}/> <span> TypeScript </span></li>
-                    <li><input type="checkbox" checked={false}/> <span> React </span></li>
-                    <li><input type="checkbox" checked={false}/> <span> Redux Toolkit </span></li>
+                    <li><input type="checkbox" checked={props.tasks[0].isDone}/> <span> {props.tasks[0].title} Language </span></li>
+                    <li><input type="checkbox" checked={props.tasks[1].isDone}/> <span>{props.tasks[1].title} </span></li>
+                    <li><input type="checkbox" checked={props.tasks[2].isDone}/> <span> {props.tasks[2].title}</span></li>
+                    <li><input type="checkbox" checked={props.tasks[3].isDone}/> <span> {props.tasks[3].title} </span></li>
+                    <li><input type="checkbox" checked={props.tasks[4].isDone}/> <span> {props.tasks[4].title} </span></li>
                 </ul>
 
                 <div>
