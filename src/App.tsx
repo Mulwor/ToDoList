@@ -1,22 +1,24 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import TodoList from "./components/TodoList";
+import {v1} from "uuid";
 
 export type FilterValuesType = "all" | "active" | "completed"
 
 function App() {
     let [tasks, setTasks] = React.useState([
-        { id: 1, title: "HTML&CSS", isDone: false },
-        { id: 2, title: "JS", isDone: true },
-        { id: 3, title: "ReactJS", isDone: false },
-        { id: 4, title: "SolidJS", isDone: true },
-        { id: 5, title: "WesternJS", isDone: false },
-        { id: 6, title: "Zeva", isDone: true},
+        { id: v1(), title: "HTML&CSS", isDone: false },
+        { id: v1(), title: "JS", isDone: true },
+        { id: v1(), title: "ReactJS", isDone: false },
+        { id: v1(), title: "SolidJS", isDone: true },
+        { id: v1(), title: "WesternJS", isDone: false },
+        { id: v1(), title: "Zeva", isDone: true},
     ])
-    let [filter, setFilter] = useState<FilterValuesType>('all')
+
+    let [filter, setFilter] = React.useState<FilterValuesType>('all')
 
     // Для удаления по клику на х
-    function removeTask(id: number) {
+    function removeTask(id: string) {
         let removeTasks = tasks.filter(task => task.id !== id)
         setTasks(removeTasks)
     }
