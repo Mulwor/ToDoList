@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import './App.css';
 import TodoList from "./components/TodoList";
 
+export type FilterValuesType = "all" | "active" | "completed"
+
 function App() {
-    let [tasks, setTasks] = useState([
+    let [tasks, setTasks] = React.useState([
         { id: 1, title: "HTML&CSS", isDone: false },
         { id: 2, title: "JS", isDone: true },
         { id: 3, title: "ReactJS", isDone: false },
@@ -11,6 +13,7 @@ function App() {
         { id: 5, title: "WesternJS", isDone: false },
         { id: 6, title: "Zeva", isDone: true},
     ])
+    let [filter, setFilter] = useState<FilterValuesType>('all')
 
     // Для удаления по клику на х
     function removeTask(id: number) {
@@ -18,12 +21,24 @@ function App() {
         setTasks(removeTasks)
     }
 
+    // Для фильтрации
+    let tasksForTodolist = tasks;
+    if(filter === "active") {
+        tasksForTodolist = tasks.filter(task => !task.isDone === false)
+    }
+    if(filter === "completed") {
+        tasksForTodolist = tasks.filter(task => task.isDone === true)
+    }
+    function changeFilter(value: FilterValuesType) {
+        setFilter(value)
+    }
 
     return (
         <>
             <TodoList title = "What to learn"
-                      tasks={tasks}
+                      tasks={tasksForTodolist}
                       removeTask = {removeTask}
+                      changeFilter={changeFilter}
             />
         </>
     );
