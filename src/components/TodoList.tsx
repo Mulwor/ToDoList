@@ -12,18 +12,25 @@ type PropsType = {
     tasks: Array<TaskType>
     removeTask: (taskId: string) => void
     changeFilter: (value: FilterValuesType) => void
-    addTask: () => void
+    addTask: (title: string) => void
 }
 
 
 function TodoList(props: PropsType) {
+    let [title, setTitle] = React.useState('')
+
+    const addTaskHandler = () => {
+        props.addTask(title)
+        setTitle("")
+    }
+
     return (
-        <div className="App">
-            <div>
-                <h3>{props.title}</h3>
+        <div>
+            <h3>{props.title}</h3>
                 <div>
-                    <input/>
-                    <button onClick={()=> props.addTask()}>+</button>
+                    <input value = {title}
+                           onChange={(e) => { setTitle(e.currentTarget.value) } } />
+                    <button onClick={addTaskHandler}>+</button>
                 </div>
 
                 <ul>
@@ -43,7 +50,6 @@ function TodoList(props: PropsType) {
                     <button onClick={() => props.changeFilter("completed")}>Completed</button>
                 </div>
             </div>
-        </div>
     )
 }
 
