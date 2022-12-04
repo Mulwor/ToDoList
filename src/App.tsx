@@ -26,7 +26,7 @@ function App() {
     // Для фильтрации
     let tasksForTodolist = tasks;
     if(filter === "active") {
-        tasksForTodolist = tasks.filter(task => !task.isDone === false)
+        tasksForTodolist = tasks.filter(task => task.isDone === false)
     }
     if(filter === "completed") {
         tasksForTodolist = tasks.filter(task => task.isDone === true)
@@ -35,10 +35,18 @@ function App() {
         setFilter(value)
     }
 
+    // Для добавления новой задачи
+    function addTask() {
+        let task = { id: v1(), title: "New task", isDone: false };
+        let newTasks = [task, ...tasks]
+        setTasks(newTasks)
+    }
+
     return (
         <>
             <TodoList title = "What to learn"
                       tasks={tasksForTodolist}
+                      addTask = {addTask}
                       removeTask = {removeTask}
                       changeFilter={changeFilter}
             />
