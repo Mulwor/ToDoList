@@ -5,7 +5,7 @@ function App() {
     return (
         <div className="App">
             <div>
-                <h3>What to learn</h3>
+                <h3>Test</h3>
                 <div>
                     <input/>
                     <button>+</button>
