@@ -17,7 +17,6 @@ function App() {
             {id: v1(), title: 'What to buy', filter: 'completed'},
     ])
 
-
     let [tasks, setTasks] = React.useState([
         { id: v1(), title: "HTML&CSS", isDone: false },
         { id: v1(), title: "JS", isDone: true },
@@ -27,24 +26,18 @@ function App() {
         { id: v1(), title: "Zeva", isDone: true},
     ])
 
-    let [filter, setFilter] = React.useState<FilterValuesType>('all')
-
     // Для удаления по клику на х
     function removeTask(id: string) {
         let removeTasks = tasks.filter(task => task.id !== id)
         setTasks(removeTasks)
     }
 
-    // Для фильтрации
-    let tasksForTodolist = tasks;
-    if(filter === "active") {
-        tasksForTodolist = tasks.filter(task => task.isDone === false)
-    }
-    if(filter === "completed") {
-        tasksForTodolist = tasks.filter(task => task.isDone === true)
-    }
-    function changeFilter(value: FilterValuesType) {
-        setFilter(value)
+    function changeFilter(value: FilterValuesType, todolistId: string) {
+        let todolist =  todolists.find(todolists => todolists.id === todolistId)
+        if (todolist) {
+            todolist.filter = value;
+            setTodolists([...todolists])
+        }
     }
 
     // Для добавления новой задачи
@@ -53,6 +46,7 @@ function App() {
         let newTasks = [task, ...tasks]
         setTasks(newTasks)
     }
+
 
 
     // Для чекбоксов
@@ -68,13 +62,25 @@ function App() {
         <div className='App'>
             {
                 todolists.map(todolist => {
-                    return <TodoList title = {todolist.title}
+                    let tasksForTodolist = tasks;
+
+                    if(todolist.filter === "active") {
+                        tasksForTodolist = tasks.filter(task => task.isDone === false)
+                    }
+
+                    if(todolist.filter === "completed") {
+                        tasksForTodolist = tasks.filter(task => task.isDone === true)
+                    }
+
+                    return <TodoList key = {todolist.id}
+                                     id = {todolist.id}
+                                     title = {todolist.title}
                                      tasks={tasksForTodolist}
                                      addTask = {addTask}
                                      removeTask = {removeTask}
                                      changeFilter={changeFilter}
                                      changeTaskStatus = {changeTaskStatus}
-                                     filter = {filter}
+                                     filter = {todolist.filter}
                     />
 
                 })
