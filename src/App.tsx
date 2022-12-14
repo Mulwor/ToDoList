@@ -1,5 +1,5 @@
 import React from 'react';
-import './'
+import './App.css'
 import TodoList from "./components/TodoList";
 import {v1} from "uuid";
 

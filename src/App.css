@@ -7,7 +7,7 @@
   margin-right: 50px;
 }
 
-​.error {
+.error {
   border: red 1px solid;
 }
 
@@ -15,7 +15,7 @@
   color: red;
 }
 
-​.active-filter {
+.active-filter {
   background-color: aquamarine;
 }
 
