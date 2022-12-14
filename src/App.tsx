@@ -5,7 +5,19 @@ import {v1} from "uuid";
 
 export type FilterValuesType = "all" | "active" | "completed"
 
+type TodolistsType = {
+    id: string,
+    title: string,
+    filter: FilterValuesType
+}
+
 function App() {
+    let [todolists, setTodolists] = React.useState<Array<TodolistsType>>([
+            {id: v1(), title: 'What to learn', filter: 'all'},
+            {id: v1(), title: 'What to buy', filter: 'completed'},
+    ])
+
+
     let [tasks, setTasks] = React.useState([
         { id: v1(), title: "HTML&CSS", isDone: false },
         { id: v1(), title: "JS", isDone: true },
@@ -53,16 +65,21 @@ function App() {
     }
 
     return (
-        <>
-            <TodoList title = "What to learn"
-                      tasks={tasksForTodolist}
-                      addTask = {addTask}
-                      removeTask = {removeTask}
-                      changeFilter={changeFilter}
-                      changeTaskStatus = {changeTaskStatus}
-                      filter = {filter}
-            />
-        </>
+        <div className='App'>
+            {
+                todolists.map(todolist => {
+                    return <TodoList title = {todolist.title}
+                                     tasks={tasksForTodolist}
+                                     addTask = {addTask}
+                                     removeTask = {removeTask}
+                                     changeFilter={changeFilter}
+                                     changeTaskStatus = {changeTaskStatus}
+                                     filter = {filter}
+                    />
+
+                })
+            }
+        </div>
     );
 }
 
