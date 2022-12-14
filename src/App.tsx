@@ -42,6 +42,16 @@ function App() {
         setTasks(newTasks)
     }
 
+
+    // Для чекбоксов
+    function changeTaskStatus(id: string, isDone: boolean) {
+        let task = tasks.find(t => t.id === id)
+        if (task) {
+            task.isDone = isDone;
+            setTasks([...tasks])
+        }
+    }
+
     return (
         <>
             <TodoList title = "What to learn"
@@ -49,6 +59,7 @@ function App() {
                       addTask = {addTask}
                       removeTask = {removeTask}
                       changeFilter={changeFilter}
+                      changeTaskStatus = {changeTaskStatus}
             />
         </>
     );
