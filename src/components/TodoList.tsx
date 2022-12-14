@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent } from "react";
+import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 import {FilterValuesType} from "../App";
 
 type TaskType = {
@@ -19,17 +19,23 @@ type PropsType = {
 
 function TodoList(props: PropsType) {
     let [title, setTitle] = React.useState('')
+    const [error, setError] = useState<string | null> (null)
 
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.currentTarget.value) 
     }
 
     const addTaskHandler = () => {
-        props.addTask(title)
-        setTitle("")
+        if (title.trim() !== "") {
+            props.addTask(title.trim())
+            setTitle("")
+        } else {
+            setError("Необходимо написать что-либо")
+        }
     }
 
     const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+        setError(null)
         if (event.key === "Enter") {
             addTaskHandler()
         }
@@ -54,8 +60,11 @@ function TodoList(props: PropsType) {
                     <input value = {title}
                            onChange={ onChangeHandler }
                            onKeyPress = {onKeyPressHandler}
+                           className={error ? 'error' : ""}
                     />
                     <button onClick={ addTaskHandler }>+</button>
+
+                    { error && <div className="error-message">{ error }</div> }
                 </div>
 
                 <ul>
