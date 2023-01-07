@@ -64,7 +64,6 @@ function App() {
     }
 
 
-
     // Для чекбоксов
     function changeTaskStatus(todolistID: string, id: string, isDone: boolean) {
         let todolistTasks = tasks[todolistID]
@@ -97,6 +96,15 @@ function App() {
         })
     }
 
+    // Изменения названия у загаловка тудулиста
+    function changeTodolistTitle(id: string, newTitle: string) {
+        const todolist = todolists.find(item => item.id === id)
+        if (todolist) {
+            todolist.title = newTitle;
+            setTodolists([...todolists])
+        }
+    }
+
 
     return (
         <div className='App'>
@@ -125,6 +133,7 @@ function App() {
                                      changeTaskStatus = {changeTaskStatus}
                                      filter = {todolist.filter}
                                      removeTodoList = {removeTodoList}
+                                     changeTodolistTitle={changeTodolistTitle}
                     />
 
                 })

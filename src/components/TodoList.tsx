@@ -1,6 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 import {FilterValuesType} from "../App";
 import AddItemForm from "./AddItemForm";
+import {EditableSpan} from "./EditableSpan";
 
 export type TaskType = {
     id: string
@@ -20,23 +21,25 @@ type PropsType = {
     addTask: (todolistID: string, title: string) => void
     changeTaskStatus:(todolistID: string, id: string, isDone: boolean) => void
     removeTodoList: (id: string) => void
+    changeTodolistTitle: (id: string, newTitle: string) => void
 }
 
 
 function TodoList(props: PropsType) {
-    const addTaskHandler = (title: string) => {
-        props.addTask(props.id, title)
-    }
+    const addTaskHandler = (title: string) => props.addTask(props.id, title)
+    const onDelete = () => props.removeTodoList(props.todolistID)
+    const changeTodolistTitle = (newTitle: string) => props.changeTodolistTitle(props.id, newTitle)
 
     const onAllClickHandler = () => props.changeFilter(props.id,'all')
     const onActiveClickHandler = () => props.changeFilter(props.id,'active')
     const onCompleteClickHandler = () => props.changeFilter(props.id,'completed')
-    const onDelete = () => props.removeTodoList(props.todolistID)
+
+
 
     return (
         <div>
             <h3>
-                {props.title}
+                <EditableSpan title={props.title} callBack={changeTodolistTitle} />
                 <button onClick={ onDelete }> x </button>
             </h3>
 
