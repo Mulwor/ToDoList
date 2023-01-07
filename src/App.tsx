@@ -70,6 +70,14 @@ function App() {
         }
     }
 
+    // Для удаления тудушек
+    function removeTodoList(id: string) {
+        setTodolists(todolists.filter(todolist => todolist.id !== id))
+        delete tasks[id]
+        setTasks({...tasks})
+    }
+
+
     return (
         <div className='App'>
             {
@@ -95,6 +103,7 @@ function App() {
                                      changeFilter={changeFilter}
                                      changeTaskStatus = {changeTaskStatus}
                                      filter = {todolist.filter}
+                                     removeTodoList = {removeTodoList}
                     />
 
                 })
