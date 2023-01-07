@@ -12,24 +12,33 @@ type TodolistsType = {
 }
 
 function App() {
+    let todolistID1 = v1()
+    let todolistID2 = v1()
+
     let [todolists, setTodolists] = React.useState<Array<TodolistsType>>([
-            {id: v1(), title: 'What to learn', filter: 'all'},
-            {id: v1(), title: 'What to buy', filter: 'completed'},
+        {id: todolistID1, title: 'What to learn', filter: 'all'},
+        {id: todolistID2, title: 'What to buy', filter: 'all'},
     ])
 
-    let [tasks, setTasks] = React.useState([
-        { id: v1(), title: "HTML&CSS", isDone: false },
-        { id: v1(), title: "JS", isDone: true },
-        { id: v1(), title: "ReactJS", isDone: false },
-        { id: v1(), title: "SolidJS", isDone: true },
-        { id: v1(), title: "WesternJS", isDone: false },
-        { id: v1(), title: "Zeva", isDone: true},
-    ])
+    let [tasks, setTasks] = React.useState({
+        [todolistID1]: [
+            {id: v1(), title: 'HTML&CSS', isDone: true},
+            {id: v1(), title: 'JS', isDone: true},
+            {id: v1(), title: 'ReactJS', isDone: false},
+
+        ],
+        [todolistID2]: [
+            {id: v1(), title: 'Rest API', isDone: true},
+            {id: v1(), title: 'GraphQL', isDone: false},
+        ]
+    })
+
 
     // Для удаления по клику на х
-    function removeTask(id: string) {
-        let removeTasks = tasks.filter(task => task.id !== id)
-        setTasks(removeTasks)
+    function removeTask(todolistID: string, id: string) {
+        let todolistTasks = tasks[todolistID]
+        tasks[todolistID] = todolistTasks.filter(task => task.id !== id)
+        setTasks({...tasks})
     }
 
     function changeFilter(value: FilterValuesType, todolistId: string) {

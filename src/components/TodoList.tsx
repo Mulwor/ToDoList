@@ -8,10 +8,12 @@ type TaskType = {
 }
 
 type PropsType = {
+    todolistID: string
     id: string
     title: string
     tasks: Array<TaskType>
-    removeTask: (taskId: string) => void
+
+    removeTask: (todolistID: string, taskId: string) => void
     changeFilter: (value: FilterValuesType, todolistId: string) => void
     addTask: (title: string) => void
     changeTaskStatus:(id: string, isDone: boolean) => void
@@ -63,7 +65,7 @@ function TodoList(props: PropsType) {
 
                 <ul>
                     {props.tasks.map((task: TaskType) => {
-                        const onClickHandler = () => props.removeTask(task.id)
+                        const onClickHandler = () => props.removeTask(props.todolistID, task.id)
                         const onChangeHandle = (event: ChangeEvent<HTMLInputElement>) => {
                             let newIsDoneValue = event.currentTarget.checked
                             props.changeTaskStatus(task.id, newIsDoneValue)
