@@ -15,8 +15,8 @@ type PropsType = {
 
     removeTask: (todolistID: string, taskId: string) => void
     changeFilter: (value: FilterValuesType, todolistId: string) => void
-    addTask: (title: string) => void
-    changeTaskStatus:(id: string, isDone: boolean) => void
+    addTask: (todolistID: string, title: string) => void
+    changeTaskStatus:(todolistID: string, id: string, isDone: boolean) => void
     filter: FilterValuesType
 }
 
@@ -31,7 +31,7 @@ function TodoList(props: PropsType) {
 
     const addTaskHandler = () => {
         if (title.trim() !== "") {
-            props.addTask(title.trim())
+            props.addTask(props.todolistID, title.trim())
             setTitle("")
         } else {
             setError("Необходимо написать что-либо")
@@ -68,7 +68,7 @@ function TodoList(props: PropsType) {
                         const onClickHandler = () => props.removeTask(props.todolistID, task.id)
                         const onChangeHandle = (event: ChangeEvent<HTMLInputElement>) => {
                             let newIsDoneValue = event.currentTarget.checked
-                            props.changeTaskStatus(task.id, newIsDoneValue)
+                            props.changeTaskStatus(props.todolistID, task.id, newIsDoneValue)
                         }
 
                         return (

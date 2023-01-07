@@ -37,6 +37,7 @@ function App() {
     // Для удаления по клику на х
     function removeTask(todolistID: string, id: string) {
         let todolistTasks = tasks[todolistID]
+        console.log(todolistTasks)
         tasks[todolistID] = todolistTasks.filter(task => task.id !== id)
         setTasks({...tasks})
     }
@@ -50,20 +51,22 @@ function App() {
     }
 
     // Для добавления новой задачи
-    function addTask(title: string) {
+    function addTask(todolistID: string, title: string) {
         let task = { id: v1(), title: title, isDone: false };
-        let newTasks = [task, ...tasks]
-        setTasks(newTasks)
+        let todolistTasks = tasks[todolistID]
+        tasks[todolistID] = [task, ...todolistTasks]
+        setTasks({...tasks})
     }
 
 
 
     // Для чекбоксов
-    function changeTaskStatus(id: string, isDone: boolean) {
-        let task = tasks.find(t => t.id === id)
+    function changeTaskStatus(todolistID: string, id: string, isDone: boolean) {
+        let todolistTasks = tasks[todolistID]
+        let task = todolistTasks.find(task => task.id === id)
         if (task) {
             task.isDone = isDone;
-            setTasks([...tasks])
+            setTasks({...tasks})
         }
     }
 
@@ -71,17 +74,19 @@ function App() {
         <div className='App'>
             {
                 todolists.map(todolist => {
-                    let tasksForTodolist = tasks;
+                    let allTodolistTasks = tasks[todolist.id]
+                    let tasksForTodolist = allTodolistTasks
 
                     if(todolist.filter === "active") {
-                        tasksForTodolist = tasks.filter(task => task.isDone === false)
+                        tasksForTodolist = allTodolistTasks.filter(task => !task.isDone)
                     }
 
                     if(todolist.filter === "completed") {
-                        tasksForTodolist = tasks.filter(task => task.isDone === true)
+                        tasksForTodolist = allTodolistTasks.filter(task => task.isDone)
                     }
 
                     return <TodoList key = {todolist.id}
+                                     todolistID={todolist.id}
                                      id = {todolist.id}
                                      title = {todolist.title}
                                      tasks={tasksForTodolist}
