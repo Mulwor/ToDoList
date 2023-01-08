@@ -24,7 +24,6 @@ function App() {
     { id: todolistID1, title: 'What to learn', filter: 'all' },
     { id: todolistID2, title: 'What to buy', filter: 'all' },
   ]);
-
   let [tasks, setTasks] = React.useState<TasksStateType>({
     [todolistID1]: [
       { id: v1(), title: 'HTML&CSS', isDone: true },
@@ -44,15 +43,6 @@ function App() {
     tasks[todolistID] = todolistTasks.filter((task) => task.id !== id);
     setTasks({ ...tasks });
   }
-
-  function changeFilter(todolistID: string, value: FilterValuesType) {
-    let todolist = todolists.find((todolists) => todolists.id === todolistID);
-    if (todolist) {
-      todolist.filter = value;
-      setTodolists([...todolists]);
-    }
-  }
-
   // Для добавления новой задачи
   function addTask(todolistID: string, title: string) {
     let task = { id: v1(), title: title, isDone: false };
@@ -60,7 +50,13 @@ function App() {
     tasks[todolistID] = [task, ...todolistTasks];
     setTasks({ ...tasks });
   }
-
+  function changeFilter(todolistID: string, value: FilterValuesType) {
+    let todolist = todolists.find((todolists) => todolists.id === todolistID);
+    if (todolist) {
+      todolist.filter = value;
+      setTodolists([...todolists]);
+    }
+  }
   // Для чекбоксов
   function changeTaskStatus(todolistID: string, id: string, isDone: boolean) {
     let todolistTasks = tasks[todolistID];
@@ -71,13 +67,13 @@ function App() {
     }
   }
 
+
   // Для удаления тудушек
   function removeTodoList(id: string) {
     setTodolists(todolists.filter((todolist) => todolist.id !== id));
     delete tasks[id];
     setTasks({ ...tasks });
   }
-
   // Для добавление нового списка тудушек
   function addTodolist(title: string) {
     let newTodolistId = v1();
@@ -92,7 +88,6 @@ function App() {
       [newTodolistId]: [],
     });
   }
-
   // Изменения названия у загаловка тудулиста
   function changeTodolistTitle(id: string, newTitle: string) {
     const todolist = todolists.find((item) => item.id === id);
