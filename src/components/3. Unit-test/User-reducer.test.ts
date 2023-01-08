@@ -1,5 +1,6 @@
 import { userReducer } from './User-reducer'
 
+
 test('user reducer should increment only age', () => {
     // Стартовые значения
     const startState = { age: 25, childrenCount: 0, name: 'Ali' }

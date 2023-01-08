@@ -6,7 +6,7 @@ import AddItemForm from './components/2. Add and change title/AddItemForm';
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
-type TodolistsType = {
+export type TodolistsType = {
   id: string;
   title: string;
   filter: FilterValuesType;
