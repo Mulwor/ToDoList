@@ -1,0 +1,29 @@
+type StateType = {
+    age: number
+    childrenCount: number
+    name: string
+}
+type ActionType = {
+    type: string
+    [key: string]: any
+}
+
+
+export const userReducer = (state: StateType, action: ActionType) : StateType => {
+    // Функция, которая принимает состояние (state) и принимает объект, как именно этот стейт преобразовывать(action). Редюсеры должны быть чистыми, то есть они не имеет права менять состояние. Первостепенно необходимо создавать копию редюсеров
+    switch (action.type) {
+        case 'INCREMENT-AGE':
+            // Первый способ написания
+            let newState = {...state}                     // создааем копию
+            newState.age = state.age + 1
+            return newState
+        case 'INCREMENT-CHILDREN-COUNT':
+            // Второй способ написания
+            return  {
+                ...state,
+                childrenCount: state.childrenCount + 1
+            }
+        default:
+            throw new Error('I don\'t understand this type')
+    }
+}
