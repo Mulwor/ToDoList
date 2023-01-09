@@ -39,10 +39,10 @@ function App() {
   // Для удаления по клику на х
   function removeTask(todolistID: string, id: string) {
     let todolistTasks = tasks[todolistID];
-    console.log(todolistTasks);
     tasks[todolistID] = todolistTasks.filter((task) => task.id !== id);
     setTasks({ ...tasks });
   }
+
   // Для добавления новой задачи
   function addTask(todolistID: string, title: string) {
     let task = { id: v1(), title: title, isDone: false };
@@ -50,6 +50,7 @@ function App() {
     tasks[todolistID] = [task, ...todolistTasks];
     setTasks({ ...tasks });
   }
+
   function changeFilter(todolistID: string, value: FilterValuesType) {
     let todolist = todolists.find((todolists) => todolists.id === todolistID);
     if (todolist) {
@@ -66,6 +67,16 @@ function App() {
       setTasks({ ...tasks });
     }
   }
+
+  function changeTaskTitle(id: string, newTitle: string, todolistId: string) {
+    let todolistTasks = tasks[todolistId];
+    let task = todolistTasks.find(t => t.id === id);
+    if (task) {
+        task.title = newTitle;
+        setTasks({...tasks});
+    }
+}
+
 
 
   // Для удаления тудушек
@@ -123,6 +134,7 @@ function App() {
             removeTask={removeTask}
             changeFilter={changeFilter}
             changeTaskStatus={changeTaskStatus}
+            changeTaskTitle={changeTaskTitle}
             filter={todolist.filter}
             removeTodoList={removeTodoList}
             changeTodolistTitle={changeTodolistTitle}
