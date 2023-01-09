@@ -1,7 +1,7 @@
 import {AddTodolistAC, ChangeTodoListAC, ChangeTodoLIstFilterAC, RemoveTodolistAC,
         todoListsReducer} from './Todolists-reducer'
 import { v1 } from 'uuid'
-import {FilterValuesType, TodolistsType} from '../../App'
+import {FilterValuesType, TodolistsType} from '../../../App'
 
 test.skip('correct todolist should be removed', () => {
     // Стартовые значения
