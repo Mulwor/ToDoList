@@ -9,7 +9,7 @@ import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksRe
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
-function App() {
+function AppWithReducer() {
   let todolistID1 = v1();
   let todolistID2 = v1();
 
@@ -116,4 +116,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppWithReducer;

@@ -1,7 +1,9 @@
 Основной стек:
 
 1. React; 
-2. Test-driven development and unit-test;
+2. Redux;
+3. Material-UI (использовать не дефолтные стили, а кастомные);
+4. Test-driven development and unit-test;
 
 
 ---
