@@ -1,15 +1,13 @@
 import React from 'react';
 import '../../App.css';
-import TodoList from '../1. TodoList/TodoList';
+import TodoList from '../TodoList';
 import { v1 } from 'uuid';
-import AddItemForm from '../2. Add and change title/AddItemForm';
+import AddItemForm from '../Add and change title/AddItemForm';
 import { AddTodolistAC, ChangeTodoListAC, ChangeTodoLIstFilterAC, RemoveTodolistAC,
   todoListsReducer} from "./ToDoList/Todolists-reducer";
 import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./Tasks/Tasks-reducer";
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
-
-
 
 function App() {
   let todolistID1 = v1();

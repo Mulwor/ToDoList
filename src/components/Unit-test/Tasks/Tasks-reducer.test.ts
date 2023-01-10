@@ -4,7 +4,7 @@ import {TasksStateType} from '../../../App'
 import {AddTodolistAC, RemoveTodolistAC} from '../ToDoList/Todolists-reducer';
 
 
-test.skip('correct task should be deleted from correct array', () => {
+test('correct task should be deleted from correct array', () => {
     const startState: TasksStateType = {
         'todolistId1': [
             {id: '1', title: 'CSS', isDone: false},
@@ -34,7 +34,7 @@ test.skip('correct task should be deleted from correct array', () => {
         ]
     })
 })
-test.skip('correct task should be added to correct array', () => {
+test('correct task should be added to correct array', () => {
     const startState: TasksStateType = {
         'todolistId1': [
             {id: '1', title: 'CSS', isDone: false},
@@ -57,7 +57,7 @@ test.skip('correct task should be added to correct array', () => {
     expect(endState['todolistId2'][0].title).toBe("juice")
     expect(endState['todolistId2'][0].isDone).toBe(false)
 })
-test.skip('status of specified task should be changed', () => {
+test('status of specified task should be changed', () => {
     const startState: TasksStateType = {
         "todolistId1": [
             { id: "1", title: "CSS", isDone: false },
@@ -78,7 +78,7 @@ test.skip('status of specified task should be changed', () => {
     expect(endState["todolistId2"][1].isDone).toBeFalsy();
     expect(endState["todolistId1"][1].isDone).toBeTruthy();
 });
-test.skip("change name title", () => {
+test("change name title", () => {
     const startState: TasksStateType = {
         "todolistId1": [
             { id: "1", title: "CSS", isDone: false },

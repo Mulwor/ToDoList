@@ -3,7 +3,7 @@ import {AddTodolistAC, ChangeTodoListAC, ChangeTodoLIstFilterAC, RemoveTodolistA
 import { v1 } from 'uuid'
 import {FilterValuesType, TodolistsType} from '../../../App'
 
-test.skip('correct todolist should be removed', () => {
+test('correct todolist should be removed', () => {
     // Стартовые значения
     const todolistId1 = v1()
     const todolistId2 = v1()
@@ -19,7 +19,7 @@ test.skip('correct todolist should be removed', () => {
     expect(endState.length).toBe(1)
     expect(endState[0].id).toBe(todolistId2)
 })
-test.skip('correct todolist should be added', () => {
+test('correct todolist should be added', () => {
     let todolistId1 = v1()
     let todolistId2 = v1()
     let newTodolistTitle = 'New Todolist'
@@ -34,7 +34,7 @@ test.skip('correct todolist should be added', () => {
     expect(endState[2].title).toBe(newTodolistTitle)
     expect(endState[2].filter).toBe("all")
 })
-test.skip('correct todolist should change its name', () => {
+test('correct todolist should change its name', () => {
     let todolistId1 = v1()
     let todolistId2 = v1()
     let newTodolistTitle = 'New Todolist'
@@ -48,7 +48,7 @@ test.skip('correct todolist should change its name', () => {
     expect(endState[0].title).toBe('What to learn')
     expect(endState[1].title).toBe(newTodolistTitle)
 })
-test.skip('correct filter of todolist should be changed', () => {
+test('correct filter of todolist should be changed', () => {
     let todolistId1 = v1()
     let todolistId2 = v1()
     let newFilter: FilterValuesType = 'completed'
