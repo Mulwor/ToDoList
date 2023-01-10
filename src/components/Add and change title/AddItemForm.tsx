@@ -1,4 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import {Button, TextField} from "@mui/material";
+
 
 type AddItemFormPropsType = {
     addItem: (title: string) => void
@@ -6,14 +8,14 @@ type AddItemFormPropsType = {
 
 const AddItemForm = (props: AddItemFormPropsType) => {
     let [title, setTitle] = React.useState('')
-    const [error, setError] = useState<string | null> (null)
+    let [error, setError] = useState<boolean> (false)
 
     const addItem = () => {
         if (title.trim() !== "") {
             props.addItem(title)
             setTitle("")
         } else {
-            setError("Необходимо написать что-либо")
+            setError(true)
         }
     }
 
@@ -22,7 +24,7 @@ const AddItemForm = (props: AddItemFormPropsType) => {
     }
 
     const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-        setError(null)
+        setError(false)
         if (event.key === "Enter") {
             addItem()
         }
@@ -31,14 +33,23 @@ const AddItemForm = (props: AddItemFormPropsType) => {
 
     return (
         <div>
-                <input value = {title}
-                       onChange={ onChangeHandler }
-                       onKeyPress = {onKeyPressHandler}
-                       className={error ? 'error' : ""}
-                />
-                <button onClick={ addItem }>+</button>
+            <TextField id="outlined-basic"
+                       label={error ? "Title is required" : "Add title"}
+                       variant="outlined"
+                       value={title}
+                       error = {error}
+                       size = "small"
+                       onChange={onChangeHandler}
+                       onKeyPress={onKeyPressHandler}
+            />
 
-                { error && <div className="error-message">{ error }</div> }
+            <Button style={ {maxWidth:"39px", maxHeight: "39px",
+                minWidth: "25px", minHeight: "25px",
+                backgroundColor: "black"} }
+                    variant="contained"
+                    onClick={addItem}> +
+            </Button>
+
         </div>
     )
 }

@@ -2,6 +2,8 @@ import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { FilterValuesType } from '../App';
 import AddItemForm from './Add and change title/AddItemForm';
 import { EditableSpan } from './Add and change title/EditableSpan';
+import {Button, Checkbox, IconButton} from "@mui/material";
+import {Delete} from "@mui/icons-material";
 
 export type TaskType = {
   id: string;
@@ -37,17 +39,19 @@ function TodoList(props: PropsType) {
 
   return (
     <div>
-      <h3>
-        <EditableSpan title={props.title} callBack={changeTodolistTitle} />
-        <button onClick={onDelete}> x </button>
+      <h3> <EditableSpan title={props.title} callBack={changeTodolistTitle} />
+        <IconButton aria-label="delete" onClick={onDelete}>
+          <Delete />
+        </IconButton>
       </h3>
 
       <AddItemForm addItem={addTaskHandler} />
 
       <ul>
-        {props.tasks.map((task: TaskType) => {
+        {
+          props.tasks.map((task => {
           const onClickHandler = () => props.removeTask(props.todolistID, task.id);
-          const onChangeHandle = (event: ChangeEvent<HTMLInputElement>) => {
+          const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
             let newIsDoneValue = event.currentTarget.checked;
             props.changeTaskStatus(props.todolistID, task.id, newIsDoneValue);
           };
@@ -56,33 +60,40 @@ function TodoList(props: PropsType) {
           }
 
 
-          return (
-            <li key={task.id}>
-              <input type="checkbox" checked={task.isDone} onChange={onChangeHandle} />
+          return <li key={task.id} className={task.isDone ? "is-done" : ""}>
+              <Checkbox defaultChecked
+                        size="small"
+                        onChange={onChangeHandler}
+                        checked={task.isDone}
+              />
 
               <EditableSpan title={task.title} callBack={onTitleChangeHandler} />
-              <button onClick={onClickHandler}>✖</button>
+
+              <IconButton aria-label="delete" onClick={onClickHandler}>
+                <Delete />
+              </IconButton>
             </li>
-          );
-        })}
+        }))}
       </ul>
 
       <div>
-        <button
-          className={props.filter === 'all' ? 'active-filter' : ''}
-          onClick={onAllClickHandler}>
-          All
-        </button>
-        <button
-          className={props.filter === 'active' ? 'active-filter' : ''}
-          onClick={onActiveClickHandler}>
-          Active
-        </button>
-        <button
-          className={props.filter === 'completed' ? 'active-filter' : ''}
-          onClick={onCompleteClickHandler}>
-          Completed
-        </button>
+        <Button variant = {props.filter === "all" ? "outlined" : "contained"}
+                color = "secondary"
+                size = "small"
+                onClick = {onAllClickHandler}>All
+        </Button>
+
+        <Button variant = {props.filter === "active" ? "outlined" : "contained"}
+                onClick = {onActiveClickHandler}
+                size = "small"
+                color = "success"> Active
+        </Button>
+
+        <Button variant = {props.filter === "completed" ? "outlined" : "contained"}
+                color = "error"
+                size = "small"
+                onClick = {onCompleteClickHandler}> Completed
+        </Button>
       </div>
     </div>
   );

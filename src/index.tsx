@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import App from "./App";
 
 // Для редакса
 import { store } from './components/State/store'
@@ -13,7 +14,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <Provider store={store}>
-        <AppWithRedux />
+        <App />
     </Provider>
 );
 
