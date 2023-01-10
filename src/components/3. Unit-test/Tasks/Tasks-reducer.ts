@@ -1,5 +1,5 @@
-import { TasksStateType } from '../../App'
-import {AddTodolistAC, AddTodoListAT, RemoveTodolistAC, RemoveTodoListAT} from "./ToDoList/Todolists-reducer";
+import { TasksStateType } from '../../../App'
+import {AddTodoListAT, RemoveTodoListAT} from "../ToDoList/Todolists-reducer";
 import {v1} from "uuid";
 
 export type RemoveTaskAT = {
