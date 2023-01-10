@@ -24,7 +24,17 @@ export type ChangeTodoListFilterAT = {
 
 export type ActionType = RemoveTodoListAT | AddTodoListAT | ChangeTodoListAT | ChangeTodoListFilterAT
 
-export const todoListsReducer = (state: TodolistsType[], action: ActionType) : TodolistsType[] => {
+
+
+export let todolistId1 = v1()
+export let todolistId2 = v1()
+
+const initialState: TodolistsType[] = [
+    { id: todolistId1, title: 'What to learn', filter: 'all' },
+    { id: todolistId2, title: 'What to buy', filter: 'all' }
+]
+
+export const todoListsReducer = (state: TodolistsType[] = initialState, action: ActionType) : TodolistsType[] => {
     switch (action.type) {
         case 'REMOVE-TODOLIST': {
             // Так как логика приложения не меняется, то мы можем логическую часть с фильтрацией вынести сюда. Если структура кода меняется визуально только, то она не вызывает появления новой логике
@@ -55,7 +65,7 @@ export const todoListsReducer = (state: TodolistsType[], action: ActionType) : T
             )
 
         default:
-            throw new Error('I don\'t understand this type')
+            return state
     }
 }
 
@@ -67,4 +77,5 @@ export const AddTodolistAC = (title: string): AddTodoListAT => {
     return {type: 'ADD-TODOLIST', title, todolistId: v1()}
 }
 export const ChangeTodoListAC = (id: string, title: string) : ChangeTodoListAT => ({type: 'CHANGE-TODOLIST-TITLE', title, id})
+
 export const ChangeTodoLIstFilterAC = (id: string, filter: FilterValuesType): ChangeTodoListFilterAT => ({type: "CHANGE-TODOLIST-FILTER", filter, id, })
