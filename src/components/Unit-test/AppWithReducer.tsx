@@ -4,8 +4,8 @@ import TodoList from '../1. TodoList/TodoList';
 import { v1 } from 'uuid';
 import AddItemForm from '../2. Add and change title/AddItemForm';
 import { AddTodolistAC, ChangeTodoListAC, ChangeTodoLIstFilterAC, RemoveTodolistAC,
-  todoListsReducer} from "../Unit-test/ToDoList/Todolists-reducer";
-import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "../Unit-test/Tasks/Tasks-reducer";
+  todoListsReducer} from "./ToDoList/Todolists-reducer";
+import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./Tasks/Tasks-reducer";
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
