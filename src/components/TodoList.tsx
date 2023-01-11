@@ -39,10 +39,11 @@ function TodoList(props: PropsType) {
 
   return (
     <div>
-      <h3> <EditableSpan title={props.title} callBack={changeTodolistTitle} />
-        <IconButton aria-label="delete" onClick={onDelete}>
-          <Delete />
-        </IconButton>
+      <h3> 
+        <EditableSpan title={props.title} callBack={changeTodolistTitle} />
+          <IconButton aria-label="delete" onClick={onDelete}>
+            <Delete />
+          </IconButton>
       </h3>
 
       <AddItemForm addItem={addTaskHandler} />
@@ -65,6 +66,7 @@ function TodoList(props: PropsType) {
                         size="small"
                         onChange={onChangeHandler}
                         checked={task.isDone}
+                        sx ={{color: "#9ccc65"}}
               />
 
               <EditableSpan title={task.title} callBack={onTitleChangeHandler} />
@@ -78,24 +80,27 @@ function TodoList(props: PropsType) {
 
       <div>
         <Button variant = {props.filter === "all" ? "outlined" : "contained"}
-                color = "secondary"
                 size = "small"
+                sx = {{ m: 1, color: "black", backgroundColor: "#ffecb3"}}
                 onClick = {onAllClickHandler}>All
         </Button>
 
         <Button variant = {props.filter === "active" ? "outlined" : "contained"}
                 onClick = {onActiveClickHandler}
                 size = "small"
-                color = "success"> Active
+                sx = {{ m: 1, color: "black", backgroundColor: "#009688"}}
+                > Active
         </Button>
 
         <Button variant = {props.filter === "completed" ? "outlined" : "contained"}
-                color = "error"
                 size = "small"
+                sx = {{ m: 1, color: "black", backgroundColor: "#616161"}}
                 onClick = {onCompleteClickHandler}> Completed
         </Button>
       </div>
     </div>
+
+
   );
 }
 

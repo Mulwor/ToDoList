@@ -43,11 +43,12 @@ const AddItemForm = (props: AddItemFormPropsType) => {
                        onKeyPress={onKeyPressHandler}
             />
 
-            <Button style={ {maxWidth:"39px", maxHeight: "39px",
-                minWidth: "25px", minHeight: "25px",
-                backgroundColor: "black"} }
-                    variant="contained"
-                    onClick={addItem}> +
+            <Button style={ {
+                maxWidth:"40px", maxHeight: "37px", minWidth: "37px", minHeight: "39px",
+                marginLeft: "4px", backgroundColor: "#ff5722", borderRadius: "5px"
+            }}
+                variant="contained"
+                onClick={addItem}> +
             </Button>
 
         </div>
