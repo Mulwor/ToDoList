@@ -6,13 +6,14 @@ import App from "./App";
 // Для редакса
 import { store } from './components/State/store'
 import { Provider } from 'react-redux'
+import AppWithRedux from "./components/Redux/AppWithRedux";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
     <Provider store={store}>
-        <App />
+        <AppWithRedux />
     </Provider>
 );
 
