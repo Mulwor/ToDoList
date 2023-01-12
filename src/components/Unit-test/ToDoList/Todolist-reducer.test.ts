@@ -8,7 +8,7 @@ let todolistId2: string
 let startState: Array<TodolistsType>
 
 beforeEach(() => {
-    // Перед каждым тестом
+    // Cрабатывает перед каждым тестом
     todolistId1 = v1();
     todolistId2 = v1();
     startState = [

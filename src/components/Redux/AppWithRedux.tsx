@@ -1,11 +1,8 @@
-import React from 'react';
 import '../../App.css';
 import TodoList from '../TodoList';
-import { v1 } from 'uuid';
 import AddItemForm from '../Add and change title/AddItemForm';
-import { AddTodolistAC, ChangeTodoListAC, ChangeTodoLIstFilterAC, RemoveTodolistAC,
-    todoListsReducer} from "../Unit-test/ToDoList/Todolists-reducer";
-import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "../Unit-test/Tasks/Tasks-reducer";
+import { AddTodolistAC, ChangeTodoListAC, ChangeTodoLIstFilterAC, RemoveTodolistAC} from "../Unit-test/ToDoList/Todolists-reducer";
+import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "../Unit-test/Tasks/Tasks-reducer";
 import ButtonAppBar from "../Material-UI/App-Bar";
 import {Container, Grid, Paper} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
@@ -14,8 +11,17 @@ import {TasksStateType, TodolistsType} from "../../App";
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
+
 function AppWithRedux() {
+
+    // Возвращает ссылку на dispatch функцию из хранилища Redux. Вы можете
+    // использовать его для отправки действий по мере необходимости.
+    // useDispatch() => store => store.todoLists
     const dispatch = useDispatch()
+
+
+    // Позволяет извлекать данные из состояния хранилища Redux с помощью функции callback.
+    // 1. Указывается тип стейта в котором мы работаем, что хотим получить из данного селектора
     const todolists = useSelector<AppRootStateType, Array<TodolistsType>>( state => state.todoLists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
 

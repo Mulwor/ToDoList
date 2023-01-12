@@ -22,7 +22,7 @@ export type ChangeTodoListFilterAT = {
     filter: FilterValuesType
 }
 
-export type ActionType = RemoveTodoListAT | AddTodoListAT | ChangeTodoListAT | ChangeTodoListFilterAT
+export type TodolistReducerActionType = RemoveTodoListAT | AddTodoListAT | ChangeTodoListAT | ChangeTodoListFilterAT
 
 
 
@@ -34,7 +34,8 @@ const initialState: TodolistsType[] = [
     { id: todolistId2, title: 'What to buy', filter: 'all' }
 ]
 
-export const todoListsReducer = (state: TodolistsType[] = initialState, action: ActionType) : TodolistsType[] => {
+// При старте приложение сработает наши редюсеры и наш стейт примет данные которые есть у нас в initial state.
+export const todoListsReducer = (state: TodolistsType[] = initialState, action: TodolistReducerActionType) : TodolistsType[] => {
     switch (action.type) {
         case 'REMOVE-TODOLIST': {
             // Так как логика приложения не меняется, то мы можем логическую часть с фильтрацией вынести сюда. Если структура кода меняется визуально только, то она не вызывает появления новой логике

@@ -62,8 +62,7 @@ function TodoList(props: PropsType) {
 
 
           return <li key={task.id} className={task.isDone ? "is-done" : ""}>
-              <Checkbox defaultChecked
-                        size="small"
+              <Checkbox size="small"
                         onChange={onChangeHandler}
                         checked={task.isDone}
                         sx ={{color: "#9ccc65"}}
