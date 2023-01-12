@@ -6,17 +6,15 @@ import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from ".
 import ButtonAppBar from "../Material-UI/App-Bar";
 import {Container, Grid, Paper} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../State/store";
+import {AppRootStateType} from "./store";
 import {TasksStateType, TodolistsType} from "../../App";
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
 
 function AppWithRedux() {
-
-    // Возвращает ссылку на dispatch функцию из хранилища Redux. Вы можете
-    // использовать его для отправки действий по мере необходимости.
-    // useDispatch() => store => store.todoLists
+    // Возвращает ссылку на dispatch функцию из хранилища Redux. Вы можете использовать его для отправки действий 
+    // по мере необходимости: useDispatch() => store => store.todoLists
     const dispatch = useDispatch()
 
 
