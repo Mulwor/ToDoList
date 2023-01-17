@@ -8,6 +8,7 @@ import {Container, Grid, Paper} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./store";
 import {TasksStateType, TodolistsType} from "../../App";
+import { TodolistWithRedux } from './TodoList_with_Redux';
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
@@ -92,23 +93,9 @@ function AppWithRedux() {
                                 tasksForTodolist = allTodolistTasks.filter((task) => task.isDone);
                             }
 
-                            return <Grid item>
+                            return <Grid key={todolist.id} item>
                                 <Paper style = {{padding: "10px"}}>
-                                    <TodoList
-                                        key={todolist.id}
-                                        todolistID={todolist.id}
-                                        id={todolist.id}
-                                        title={todolist.title}
-                                        tasks={tasksForTodolist}
-                                        addTask={addTask}
-                                        removeTask={removeTask}
-                                        changeFilter={changeFilter}
-                                        changeTaskStatus={changeTaskStatus}
-                                        changeTaskTitle={changeTaskTitle}
-                                        filter={todolist.filter}
-                                        removeTodoList={removeTodoList}
-                                        changeTodolistTitle={changeTodolistTitle}
-                                    />
+                                    <TodolistWithRedux todolist={todolist} />
                                 </Paper>
                             </Grid>
                         })}

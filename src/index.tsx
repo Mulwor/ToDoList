@@ -6,7 +6,7 @@ import App from "./App";
 // Для редакса
 import { store } from './components/Redux/store'
 import { Provider } from 'react-redux'
-import AppWithRedux from "./components/Redux/AppWithRedux";
+import AppWithRedux from "./components/Redux/App_With_Redux";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

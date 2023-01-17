@@ -7,6 +7,7 @@ import ButtonAppBar from "./components/Material-UI/App-Bar";
 import {Container, Grid, Paper} from "@mui/material";
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
+
 export type TodolistsType = {
   id: string;
   title: string;

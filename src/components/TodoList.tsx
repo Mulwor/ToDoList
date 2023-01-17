@@ -98,8 +98,6 @@ function TodoList(props: PropsType) {
         </Button>
       </div>
     </div>
-
-
   );
 }
 
