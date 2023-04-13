@@ -1,5 +1,4 @@
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, tasksReducer} from './Tasks-reducer'
-import { removeTaskAC } from './Tasks-reducer'
+import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from './Tasks-reducer'
 import {TasksStateType} from '../../../App'
 import {AddTodolistAC, RemoveTodolistAC} from '../ToDoList/Todolists-reducer';
 

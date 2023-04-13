@@ -1,45 +1,36 @@
-import React, { ChangeEvent } from 'react';
-import { useSelector } from 'react-redux';
-
-import { EditableSpan } from '../Add and change title/EditableSpan';
-import AddItemForm from '../Add and change title/AddItemForm';
-
-import { Button, Checkbox, IconButton } from '@mui/material';
-import { Delete } from '@mui/icons-material';
-
-import { AppRootStateType } from './store';
-import { useDispatch } from 'react-redux';
-
-import {TasksStateType, TodolistsType} from "../../App";
-
+import { ChangeEvent } from "react";
+import { useSelector } from "react-redux";
+import { EditableSpan } from "../add and change title/EditableSpan";
+import AddItemForm from "../add and change title/AddItemForm";
+import { Button, Checkbox, IconButton } from "@mui/material";
+import { Delete } from "@mui/icons-material";
+import { AppRootStateType } from "./store";
+import { useDispatch } from "react-redux";
+import { TodolistsType } from "../../App";
 import {
-  AddTodolistAC,
   ChangeTodoListAC,
   ChangeTodoLIstFilterAC,
   RemoveTodolistAC,
-} from '../Unit-test/ToDoList/Todolists-reducer';
+} from "../Unit-test/ToDoList/Todolists-reducer";
 import {
   addTaskAC,
   changeTaskStatusAC,
   changeTaskTitleAC,
   removeTaskAC,
-} from '../Unit-test/Tasks/Tasks-reducer';
-import { TaskType } from '../TodoList';
+} from "../Unit-test/tasks/Tasks-reducer";
+import { TaskType } from "../TodoList";
 
 type TDLype = {
   todolist: TodolistsType;
 };
 
 export const TodolistWithRedux = ({ todolist }: TDLype) => {
-
   const { id, title, filter } = todolist;
 
   let tasks = useSelector<AppRootStateType, Array<TaskType>>((state) => state.tasks[id]);
 
-
   const dispatch = useDispatch();
 
-  // Изменения названия у загаловка тудулиста
   function changeTodolistTitle(newTitle: string) {
     const action = ChangeTodoListAC(id, newTitle);
     dispatch(action);
@@ -55,19 +46,16 @@ export const TodolistWithRedux = ({ todolist }: TDLype) => {
     dispatch(action);
   }
 
-  if (filter === 'active') {
+  if (filter === "active") {
     tasks = tasks.filter((task) => !task.isDone);
   }
-  if (filter === 'completed') {
+  if (filter === "completed") {
     tasks = tasks.filter((task) => task.isDone);
   }
 
-
-  
-  const onAllClickHandler = () => dispatch(ChangeTodoLIstFilterAC(id, 'all'))
-  const onActiveClickHandler = () => dispatch(ChangeTodoLIstFilterAC(id, 'active'))
-  const onCompleteClickHandler = () => dispatch(ChangeTodoLIstFilterAC(id, 'completed'))
-
+  const onAllClickHandler = () => dispatch(ChangeTodoLIstFilterAC(id, "all"));
+  const onActiveClickHandler = () => dispatch(ChangeTodoLIstFilterAC(id, "active"));
+  const onCompleteClickHandler = () => dispatch(ChangeTodoLIstFilterAC(id, "completed"));
 
   return (
     <div>
@@ -88,16 +76,16 @@ export const TodolistWithRedux = ({ todolist }: TDLype) => {
             dispatch(changeTaskStatusAC(task.id, newIsDoneValue, id));
           };
           const onTitleChangeHandler = (newValue: string) => {
-            dispatch(changeTaskTitleAC(task.id, newValue, id))
+            dispatch(changeTaskTitleAC(task.id, newValue, id));
           };
 
           return (
-            <li key={task.id} className={task.isDone ? 'is-done' : ''}>
+            <li key={task.id} className={task.isDone ? "is-done" : ""}>
               <Checkbox
                 size="small"
                 onChange={onChangeHandler}
                 checked={task.isDone}
-                sx={{ color: '#9ccc65' }}
+                sx={{ color: "#9ccc65" }}
               />
 
               <EditableSpan title={task.title} callBack={onTitleChangeHandler} />
@@ -112,28 +100,28 @@ export const TodolistWithRedux = ({ todolist }: TDLype) => {
 
       <div>
         <Button
-          variant={filter === 'all' ? 'outlined' : 'contained'}
+          variant={filter === "all" ? "outlined" : "contained"}
           size="small"
-          sx={{ m: 1, color: 'black', backgroundColor: '#ffecb3' }}
+          sx={{ m: 1, color: "black", backgroundColor: "#ffecb3" }}
           onClick={onAllClickHandler}>
           All
         </Button>
 
         <Button
-          variant={filter === 'active' ? 'outlined' : 'contained'}
+          variant={filter === "active" ? "outlined" : "contained"}
           onClick={onActiveClickHandler}
           size="small"
-          sx={{ m: 1, color: 'black', backgroundColor: '#009688' }}>
-          {' '}
+          sx={{ m: 1, color: "black", backgroundColor: "#009688" }}>
+          {" "}
           Active
         </Button>
 
         <Button
-          variant={filter === 'completed' ? 'outlined' : 'contained'}
+          variant={filter === "completed" ? "outlined" : "contained"}
           size="small"
-          sx={{ m: 1, color: 'black', backgroundColor: '#616161' }}
+          sx={{ m: 1, color: "black", backgroundColor: "#616161" }}
           onClick={onCompleteClickHandler}>
-          {' '}
+          {" "}
           Completed
         </Button>
       </div>
